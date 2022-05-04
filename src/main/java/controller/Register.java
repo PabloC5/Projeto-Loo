@@ -1,0 +1,24 @@
+package controller;
+
+import dao.ClientDao;
+import dao.ProdutoDao;
+import model.Carro;
+import model.Cliente;
+import model.Veiculo;
+
+public class Register {
+
+    public void saveClient(Cliente cliente){
+        ClientDao clientDao = new ClientDao();
+        clientDao.saveProduto(cliente);
+    }
+
+    public void saveVeiculo(Veiculo veiculo){
+        ProdutoDao produtoDao = new ProdutoDao();
+        produtoDao.saveProduto(veiculo);
+    }
+
+    public void saveCarro(Carro carro){
+
+    }
+}
