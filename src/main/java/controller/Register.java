@@ -1,5 +1,6 @@
 package controller;
 
+import dao.CarroDao;
 import dao.ClientDao;
 import dao.ProdutoDao;
 import model.Carro;
@@ -19,6 +20,7 @@ public class Register {
     }
 
     public void saveCarro(Carro carro){
-
+        CarroDao carroDao = new CarroDao();
+        carroDao.saveProduto(carro);
     }
 }

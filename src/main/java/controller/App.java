@@ -17,13 +17,5 @@ public class App {
 //        System.out.println(produtoDao.listAllProduto());
 //        produtoDao.listAllProduto();
         produtoDao.listAllProduto();
-
-//        ClientDao clientDao = new ClientDao();
-//        Student student = new Student("pablo" , "aaaa" , "teste@gmail.com");
-//        Veiculo produto = new Veiculo(10, "motor");
-//        Cliente cliente = new Cliente("Anderson", 25, "99990329");
-//        dao.saveStudent(student);
-//        clientDao.saveProduto(cliente);
-//        produtoDao.saveProduto(produto);
     }
 }

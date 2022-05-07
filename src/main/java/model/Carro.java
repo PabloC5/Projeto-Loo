@@ -16,10 +16,10 @@ public class Carro extends Veiculo{
     @Column(name = "ID")
     private long id;
 
-//    @Column(name = "Aro Rodas")
+    @Column(name = "Aro Rodas")
     private int aroRodas;
 
-//    @Column(name = "Numero de portas")
+    @Column(name = "Numero de portas")
     private int portas;
 
     public Carro() {

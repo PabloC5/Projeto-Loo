@@ -123,7 +123,7 @@ public class CadastroProduto extends JFrame implements VisualWindow {
                 int aroRodas = Integer.parseInt(textField4.getText());
                 Carro carro = new Carro(produtoPreco,nomeProduto,aroRodas, numeroPortas);
                 Register register = new Register();
-                register.saveVeiculo(carro);
+                register.saveCarro(carro);
 
                 textField.setText("");
                 textField2.setText("");
