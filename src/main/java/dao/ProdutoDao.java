@@ -4,13 +4,13 @@ import java.util.List;
 
 import model.Carro;
 import model.Veiculo;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
+import util.Tabelas;
 
 public class ProdutoDao {
-    public void saveProduto(Veiculo produto) {
+    public void saveProduto(Carro produto) {
         Transaction transaction = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -75,7 +75,7 @@ public class ProdutoDao {
     }
 
     public List<Veiculo> listAllProduto() {
-
+        Tabelas tabelas = Tabelas.VEICULO;
         Transaction transaction = null;
         List<Veiculo> produtos = null;
         try {
@@ -83,7 +83,7 @@ public class ProdutoDao {
             //start the transaction
             transaction = session.beginTransaction();
             //get the studendts
-            produtos = session.createQuery("from Veiculo").list();
+            produtos = session.createQuery("from " + tabelas.getNomeTabelas()).list();
 //            for (int i = 0; i <produtos.size(); i++) {
 //                System.out.println(produtos.get(i));
 //            }

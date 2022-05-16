@@ -6,7 +6,7 @@ import java.awt.*;
 public class PanelBase extends JPanel implements VisualWindow {
 
     private FrameBase frameBase;
-    private CadastroProduto initialJP;
+    private CadastroVeiculo initialJP;
     private Listagem secondJP;
     private ThirdScreen thirdJP;
 

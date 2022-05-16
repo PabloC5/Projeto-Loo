@@ -14,10 +14,10 @@ public class Register {
         clientDao.saveProduto(cliente);
     }
 
-    public void saveVeiculo(Veiculo veiculo){
-        ProdutoDao produtoDao = new ProdutoDao();
-        produtoDao.saveProduto(veiculo);
-    }
+//    public void saveVeiculo(Veiculo veiculo){
+//        ProdutoDao produtoDao = new ProdutoDao();
+//        produtoDao.saveProduto(veiculo);
+//    }
 
     public void saveCarro(Carro carro){
         CarroDao carroDao = new CarroDao();

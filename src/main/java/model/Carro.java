@@ -16,10 +16,10 @@ public class Carro extends Veiculo{
     @Column(name = "ID")
     private long id;
 
-    @Column(name = "Aro Rodas")
+    @Column(name = "Aro_Rodas")
     private int aroRodas;
 
-    @Column(name = "Numero de portas")
+    @Column(name = "Numero_de_portas")
     private int portas;
 
     public Carro() {
@@ -28,8 +28,8 @@ public class Carro extends Veiculo{
 
     public Carro(double preco, String nomePoduto, int aroRodas, int portas) {
         super(preco, nomePoduto);
-        aroRodas = getAroRodas();
-        portas = getPortas();
+        setAroRodas(aroRodas);
+        setPortas(portas);
     }
 
     @Override
