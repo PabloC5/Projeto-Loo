@@ -74,7 +74,7 @@ public class ProdutoDao {
         return produto;
     }
 
-    public List<Veiculo> listAllProduto() {
+    public List<Veiculo> listAllVeiculos() {
         Tabelas tabelas = Tabelas.VEICULO;
         Transaction transaction = null;
         List<Veiculo> produtos = null;
@@ -83,7 +83,7 @@ public class ProdutoDao {
             //start the transaction
             transaction = session.beginTransaction();
             //get the studendts
-            produtos = session.createQuery("from " + tabelas.getNomeTabelas()).list();
+            produtos = session.createQuery("FROM " + tabelas.getNomeTabelas()).list();
 //            for (int i = 0; i <produtos.size(); i++) {
 //                System.out.println(produtos.get(i));
 //            }
@@ -105,30 +105,6 @@ public class ProdutoDao {
 
         return produtos;
     }
-
-//    public void listAllProduto(){
-////        Session session = factory.openSession();
-//        Transaction tx = null;
-//        List produtos = null;
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-//        try {
-//            tx = session.beginTransaction();
-//             produtos = session.createQuery("FROM Produto").list();
-//            System.out.println(produtos);
-////            for (Iterator iterator = employees.iterator(); iterator.hasNext();){
-////                Carro carro = (Carro) iterator.next();
-////                System.out.print("First Name: " + carro.getNomePoduto());
-////                System.out.print("  Last Name: " + carro.getAroRodas());
-////                System.out.println("  Salary: " + carro.getPreco());
-////            }
-//            tx.commit();
-//        } catch (HibernateException e) {
-//            if (tx!=null) tx.rollback();
-//            e.printStackTrace();
-//        } finally {
-//            session.close();
-//        }
-//    }
 
     public void deleteProduto(long id) {
 

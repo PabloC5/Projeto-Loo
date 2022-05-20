@@ -5,7 +5,6 @@ import java.util.Properties;
 import model.Carro;
 import model.Cliente;
 import model.Veiculo;
-import model.Student;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

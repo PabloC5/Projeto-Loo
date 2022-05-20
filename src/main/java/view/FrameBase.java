@@ -72,9 +72,11 @@ public class FrameBase extends JFrame implements VisualWindow {
                 new CadastroCliente().setVisible(true);
             }
         });
+
         jButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new Listagem().setVisible(true);
             }
         });
 

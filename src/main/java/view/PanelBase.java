@@ -28,7 +28,7 @@ public class PanelBase extends JPanel implements VisualWindow {
     @Override
     public void setComponents() {
 //        initialJP = new CadastroProduto(frameBase);
-        secondJP = new Listagem(frameBase);
+//        secondJP = new Listagem(frameBase);
         thirdJP = new ThirdScreen(frameBase);
         // adicionando as telas na tela base PanelBase
         add(initialJP, "initial");

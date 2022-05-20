@@ -32,12 +32,11 @@ public class CadastroVeiculo extends JFrame implements VisualWindow {
     public void setLayouts() {
         setSize(800, 600);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
     public void setComponents() {
-//        menuBar = new JMenuBar();
         textField = new JTextField();
         textField2 = new JTextField();
         textField3 = new JTextField();
@@ -52,7 +51,7 @@ public class CadastroVeiculo extends JFrame implements VisualWindow {
         JPanel buttonPane = new JPanel();
         JPanel textPanel = new JPanel();
 //        JLabel labelTitulo = new JLabel("Cadastrar clientes:");
-        JLabel lblNomeProduto = new JLabel("Nome Produto:");
+        JLabel lblNomeProduto = new JLabel("Modelo Veiculo:");
         lblNomeProduto.setFont(new Font("Arial Black", Font.BOLD, 12));
         lblNomeProduto.setForeground(SystemColor.desktop);
         lblNomeProduto.setBounds(95, 127, 70, 15);

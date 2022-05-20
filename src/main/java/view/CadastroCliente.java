@@ -30,9 +30,12 @@ public class CadastroCliente extends JFrame implements VisualWindow {
 
     @Override
     public void setLayouts() {
-        setSize(800, 600);
+//        setSize(800, 600);
+//        setVisible(true);
+        setLayout(new FlowLayout());
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBackground(Color.BLUE);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
@@ -105,18 +108,21 @@ public class CadastroCliente extends JFrame implements VisualWindow {
         jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String cpf = textField2.getText();
-                String nome = textField.getText();
-                int idade = Integer.parseInt(textField3.getText());
-                Cliente cliente = new Cliente(nome,idade,cpf);
-//                Register register = new Register();
-//                register.saveClient(cliente);
-                banco.addCliente(cliente);
-                banco.imprimeClientes();
+                try {
+                    String cpf = textField2.getText();
+                    String nome = textField.getText();
+                    int idade = Integer.parseInt(textField3.getText());
+                    Cliente cliente = new Cliente(nome,idade,cpf);
+                    Register register = new Register();
+                    register.saveClient(cliente);
 
-                textField.setText("");
-                textField2.setText("");
-                textField3.setText("");
+                    textField.setText("");
+                    textField2.setText("");
+                    textField3.setText("");
+                }catch (Exception exception){
+                    System.out.println("Erro encontrado: " + exception);
+                }
+
             }
         });
     }
