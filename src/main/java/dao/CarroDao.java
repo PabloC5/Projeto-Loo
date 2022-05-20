@@ -59,7 +59,7 @@ public class CarroDao {
             //start the transaction
             transaction = session.beginTransaction();
             //get the studendt object
-            carro = session.get(carro.class, id);
+            carro = session.get(Carro.class, id);
             //commit the transaction
             transaction.commit();
 

@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
+import util.Tabelas;
 
 public class ClientDao{
     public void saveProduto(Cliente cliente) {
@@ -73,7 +74,7 @@ public class ClientDao{
     }
 
     public List<Cliente> listAllCliente() {
-
+        Tabelas tabelas = Tabelas.CLIENTE;
         Transaction transaction = null;
         List<Cliente> clientes = null;
         try {
@@ -81,7 +82,7 @@ public class ClientDao{
             //start the transaction
             transaction = session.beginTransaction();
             //get the studendts
-            clientes = session.createQuery("from cliente").list();
+            clientes = session.createQuery("from " + tabelas.getNomeTabelas()).list();
             //commit the transaction
             transaction.commit();
 

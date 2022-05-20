@@ -1,76 +1,131 @@
-//package view;
-//
-//import javax.swing.*;
-//import java.awt.*;
-//
-//public class SecondScreen extends JPanel implements VisualWindow{
-//
-//        private FrameBase frameBase;
-//
-//        public SecondScreen(FrameBase frameBase){
-//            this.frameBase = frameBase;
-//            setLayouts();
-//            setComponents();
-//            setEvents();
-//        }
-//
-//        @Override
-//        public void setLayouts() {
-//            setLayout(new FlowLayout());
-//            setVisible(true);
-//            setBackground(Color.DARK_GRAY);
-//        }
-//
-//        @Override
-//        public void setComponents() {
-//
-//        }
-//
-//        @Override
-//        public void setEvents() {
-//
-//        }
-//
-//}
-
 package view;
+
+import dao.ProdutoDao;
+import controller.ListaClientes;
+import util.Banco;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Listagem extends JPanel implements VisualWindow{
+public class Listagem extends JFrame implements VisualWindow {
+
+    private JButton jButton;
+    private JTextField textField;
+    private JTextField textField2;
+    private JTextField textField3;
+    private Banco banco = new Banco();
+    private JPanel contentPane;
+    private JPanel tituloPainel;
+
+    private ListaClientes listaClientes;
 
 
-    private FrameBase frameb;
-
-    public Listagem(FrameBase frameb) {
-        this.frameb = frameb;
+    public Listagem(){
         setLayouts();
         setComponents();
         setEvents();
+        repaint();
     }
-
 
     @Override
     public void setLayouts() {
+//        setSize(800, 600);
+//        setVisible(true);
         setLayout(new FlowLayout());
         setVisible(true);
         setBackground(Color.BLUE);
-
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
     public void setComponents() {
-        // TODO Auto-generated method stub
+//        menuBar = new JMenuBar();
+        textField = new JTextField();
+        textField2 = new JTextField();
+        textField3 = new JTextField();
+        setBounds(100, 100, 450, 300);
+        contentPane = new JPanel();
+        tituloPainel = new JPanel();
+        contentPane.setBackground(Color.lightGray);
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+
+        JPanel buttonPane = new JPanel();
+//        JPanel textPanel = new JPanel();
+////        JLabel labelTitulo = new JLabel("Cadastrar clientes:");
+//        JLabel lblNome = new JLabel("Nome:");
+//        lblNome.setFont(new Font("Arial Black", Font.BOLD, 12));
+//        lblNome.setForeground(SystemColor.desktop);
+//        lblNome.setBounds(95, 127, 70, 15);
+////        teste
+//        textField = new JTextField();
+//        textField.setBounds(183, 125, 146, 19);
+//
+//        JLabel labelCpf = new JLabel("CPF:");
+//        labelCpf.setFont(new Font("Arial Black", Font.PLAIN, 12));
+//        labelCpf.setForeground(new Color(1, 42, 42));
+//        labelCpf.setBounds(95, 153, 70, 15);
+//
+////        tituloPainel.add(labelTitulo);
+//        contentPane.add(labelCpf);
+//        textField2 = new JTextField();
+//        textField2.setBounds(183, 151, 146, 19);
+//        contentPane.add(textField2);
+//        textField2.setColumns(10);
+//
+//        contentPane.add(lblNome);
+//        contentPane.add(textField);
+//        textField.setColumns(10);
+//        contentPane.add(buttonPane, BorderLayout.NORTH);
+//
+//
+//        JLabel labelIdade = new JLabel("Idade:");
+//        labelIdade.setFont(new Font("Arial Black", Font.PLAIN, 12));
+//        labelIdade.setForeground(new Color(01, 42, 42));
+//        labelIdade.setBounds(95, 177, 70, 15);
+//        contentPane.add(labelIdade);
+//        textField3 = new JTextField();
+//        textField3.setColumns(10);
+//        textField3.setBounds(183, 176, 146, 19);
+//        contentPane.add(textField3);
+
+
+        jButton = new JButton("");
+        jButton.setFont(new Font("Ubuntu", Font.BOLD, 14));
+        jButton.setForeground(new Color(01, 100, 0));
+        jButton.setBounds(100, 100, 200, 25);
+        jButton.setText("Listar");
+        contentPane.add(jButton);
+
+//        Container contentPane = getContentPane();
+//        contentPane.add(labelTitulo, BorderLayout.CENTER);
 
     }
 
     @Override
     public void setEvents() {
-        // TODO Auto-generated method stub
+        jButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    ProdutoDao produtoDao = new ProdutoDao();
+                    produtoDao.listAllVeiculos();
+                }catch (Exception exception){
+                    System.out.println("Erro encontrado: " + exception);
+                }
 
+            }
+        });
     }
 
-
-
+    public void repaintAll(){
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                repaint();
+            }
+        });
+    }
 }

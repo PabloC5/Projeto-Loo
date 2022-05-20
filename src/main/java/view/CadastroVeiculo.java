@@ -2,7 +2,6 @@ package view;
 
 import controller.Register;
 import model.Carro;
-import model.Veiculo;
 import util.Banco;
 
 import javax.swing.*;
@@ -10,7 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CadastroProduto extends JFrame implements VisualWindow {
+public class CadastroVeiculo extends JFrame implements VisualWindow {
 
     private JButton jButton;
     private JTextField textField;
@@ -22,7 +21,7 @@ public class CadastroProduto extends JFrame implements VisualWindow {
     private JPanel tituloPainel;
 
 
-    public CadastroProduto(){
+    public CadastroVeiculo(){
         setLayouts();
         setComponents();
         setEvents();
@@ -33,12 +32,11 @@ public class CadastroProduto extends JFrame implements VisualWindow {
     public void setLayouts() {
         setSize(800, 600);
         setVisible(true);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
     public void setComponents() {
-//        menuBar = new JMenuBar();
         textField = new JTextField();
         textField2 = new JTextField();
         textField3 = new JTextField();
@@ -53,7 +51,7 @@ public class CadastroProduto extends JFrame implements VisualWindow {
         JPanel buttonPane = new JPanel();
         JPanel textPanel = new JPanel();
 //        JLabel labelTitulo = new JLabel("Cadastrar clientes:");
-        JLabel lblNomeProduto = new JLabel("Nome Produto:");
+        JLabel lblNomeProduto = new JLabel("Modelo Veiculo:");
         lblNomeProduto.setFont(new Font("Arial Black", Font.BOLD, 12));
         lblNomeProduto.setForeground(SystemColor.desktop);
         lblNomeProduto.setBounds(95, 127, 70, 15);
@@ -66,15 +64,15 @@ public class CadastroProduto extends JFrame implements VisualWindow {
         labelPreco.setForeground(new Color(1, 42, 42));
         labelPreco.setBounds(95, 153, 70, 15);
 
-        JLabel labelPortas = new JLabel("Numeros de portas:");
+        JLabel labelPortas = new JLabel("Portas Num:");
         labelPortas.setFont(new Font("Arial Black", Font.PLAIN, 12));
         labelPortas.setForeground(new Color(1, 42, 42));
         labelPortas.setBounds(95, 190, 70, 15);
 
-        JLabel labelAroRodas = new JLabel("Tamnho do aro das rodas:");
-        labelPortas.setFont(new Font("Arial Black", Font.PLAIN, 12));
-        labelPortas.setForeground(new Color(1, 42, 42));
-        labelPortas.setBounds(95, 210, 70, 15);
+        JLabel labelAroRodas = new JLabel("Aro rodas:");
+        labelAroRodas.setFont(new Font("Arial Black", Font.PLAIN, 12));
+        labelAroRodas.setForeground(new Color(1, 42, 42));
+        labelAroRodas.setBounds(95, 210, 70, 15);
 
 //        tituloPainel.add(labelTitulo);
         contentPane.add(labelPreco);
@@ -106,10 +104,6 @@ public class CadastroProduto extends JFrame implements VisualWindow {
         jButton.setBounds(85, 230, 95, 25);
         jButton.setText("Salvar");
         contentPane.add(jButton);
-
-//        Container contentPane = getContentPane();
-//        contentPane.add(labelTitulo, BorderLayout.CENTER);
-
     }
 
     @Override
@@ -117,18 +111,22 @@ public class CadastroProduto extends JFrame implements VisualWindow {
         jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double produtoPreco = Double.parseDouble(textField2.getText());
-                String nomeProduto = textField.getText();
-                int numeroPortas = Integer.parseInt(textField3.getText());
-                int aroRodas = Integer.parseInt(textField4.getText());
-                Carro carro = new Carro(produtoPreco,nomeProduto,aroRodas, numeroPortas);
-                Register register = new Register();
-                register.saveVeiculo(carro);
+                try {
+                    double produtoPreco = Double.parseDouble(textField2.getText());
+                    String nomeProduto = textField.getText();
+                    int numeroPortas = Integer.parseInt(textField3.getText());
+                    int aroRodas = Integer.parseInt(textField4.getText());
+                    Carro carro = new Carro(produtoPreco,nomeProduto,aroRodas, numeroPortas);
+                    Register register = new Register();
+                    register.saveCarro(carro);
 
-                textField.setText("");
-                textField2.setText("");
-                textField3.setText("");
-                textField4.setText("");
+                    textField.setText("");
+                    textField2.setText("");
+                    textField3.setText("");
+                    textField4.setText("");
+                }catch (Exception exception){
+                    System.out.println("Encontrado um erro: " + exception);
+                }
             }
         });
     }
