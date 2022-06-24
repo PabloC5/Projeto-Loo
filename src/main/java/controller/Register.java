@@ -17,6 +17,11 @@ public class Register {
         carroDao.saveProduto(carro);
     }
 
+    public void updateCarros(Carro carro){
+        CarroDao carroDao = new CarroDao();
+        carroDao.updateCarro(carro);
+    }
+
     public void deleteCar(Carro carro){
         CarroDao veiculoDao = new CarroDao();
         veiculoDao.deleteCarro(carro);

@@ -47,12 +47,12 @@ public class CriaTableVeiculos extends AbstractTableModel {
         return String.class;
     }
 
-//    public void removeContato(int indiceLinha) {
-//        linhas.remove(indiceLinha);
-//        fireTableRowsDeleted(indiceLinha,
-//                indiceLinha);
-//
-//    }
+    public void removeContato(int indiceLinha) {
+        listDeCarros.remove(indiceLinha);
+        fireTableRowsDeleted(indiceLinha,
+                indiceLinha);
+
+    }
     public boolean isCellEditable(int rowIndex, int
             columnIndex) {
         return false;

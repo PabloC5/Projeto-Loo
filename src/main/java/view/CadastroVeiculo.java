@@ -138,18 +138,18 @@ public class CadastroVeiculo extends JFrame implements VisualWindow {
             }
         });
 
-        jButton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    CarroDao veiculoDao = new CarroDao();
-//                    veiculoDao.deleteCarro();
-
-                }catch (Exception exception){
-                    System.out.println("Encontrado um erro: " + exception);
-                }
-            }
-        });
+//        jButton2.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                try {
+//                    CarroDao veiculoDao = new CarroDao();
+////                    veiculoDao.deleteCarro();
+//
+//                }catch (Exception exception){
+//                    System.out.println("Encontrado um erro: " + exception);
+//                }
+//            }
+//        });
     }
 
     public void repaintAll(){

@@ -1,6 +1,5 @@
 package model;
 
-import javax.persistence.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,6 +30,14 @@ public class Carro extends Veiculo implements BaseEntity{
         setAroRodas(aroRodas);
         setPortas(portas);
     }
+
+    public Carro(long id,double preco, String nomePoduto, int aroRodas, int portas) {
+        super(preco, nomePoduto);
+        this.id = id;;
+        setAroRodas(aroRodas);
+        setPortas(portas);
+    }
+
 
     @Override
     public long getId() {

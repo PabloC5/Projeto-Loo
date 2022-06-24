@@ -75,39 +75,6 @@ public class VeiculoDao {
         return produto;
     }
 
-//    public List<Veiculo> listAllVeiculos() {
-//        Tabelas tabelas = Tabelas.VEICULO;
-//        Transaction transaction = null;
-//        List<Veiculo> produtos = null;
-//        try {
-//            Session session = HibernateUtil.getSessionFactory().openSession();
-//            //start the transaction
-//            transaction = session.beginTransaction();
-//            //get the studendts
-//            produtos = session.createQuery("FROM " + tabelas.getNomeTabelas()).list();
-//
-////            for (int i = 0; i <produtos.size(); i++) {
-////                System.out.println(produtos.get(i));
-////            }
-//            for(Veiculo produto: produtos){
-//                System.out.println(produto.getNomePoduto());
-//            }
-//            //commit the transaction
-//            System.out.println(produtos);
-//            transaction.commit();
-//
-//
-//        } catch (Exception e) {
-//            if(transaction != null) {
-//                System.out.println(e);
-//                transaction.rollback();
-//                System.out.println("abriu transaction mas falhou");
-//            }
-//        }
-//
-//        return produtos;
-//    }
-
 //    teste tabela carros
 public List<Carro> listAllVeiculos() {
     Tabelas tabelas = Tabelas.VEICULO;

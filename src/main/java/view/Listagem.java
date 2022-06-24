@@ -4,6 +4,7 @@ import controller.CriaTableVeiculos;
 import dao.VeiculoDao;
 import controller.ListaClientes;
 import model.Carro;
+import model.Veiculo;
 import util.Banco;
 
 import javax.swing.*;
@@ -17,6 +18,8 @@ import java.util.List;
 public class Listagem extends JFrame implements VisualWindow {
 
     private JButton jButton;
+
+    private  JButton jButton2;
     private JTextField textField;
     private JTextField textField2;
     private JTextField textField3;
@@ -69,29 +72,6 @@ public class Listagem extends JFrame implements VisualWindow {
 //    teste net
     @Override
     public void setComponents() {
-//        textField = new JTextField();
-//        textField2 = new JTextField();
-//        textField3 = new JTextField();
-//        setBounds(100, 100, 450, 300);
-//        contentPane = new JPanel();
-//        tituloPainel = new JPanel();
-//        contentPane.setBackground(Color.lightGray);
-//        setContentPane(contentPane);
-//        contentPane.setLayout(null);
-
-//        JPanel buttonPane = new JPanel();
-
-//        jButton = new JButton("");
-//        jButton.setFont(new Font("Ubuntu", Font.BOLD, 14));
-//        jButton.setForeground(new Color(01, 100, 0));
-//        jButton.setBounds(100, 100, 200, 25);
-//        jButton.setText("Listar");
-//        contentPane.add(jButton);
-//        contentPane.add(tabela);
-
-//        começa testes net
-//        tabela = new JTable(modelo);
-
         painelFundo = new JPanel();
         painelFundo.setLayout(new GridLayout(1, 1));
         tabela = new JTable(modelo);
@@ -109,7 +89,14 @@ public class Listagem extends JFrame implements VisualWindow {
         jButton.setForeground(new Color(226, 29, 29));
         jButton.setBounds(500, 500, 95, 25);
         jButton.setText("Deletar");
+
+        jButton2 = new JButton("");
+        jButton2.setFont(new Font("Ubuntu", Font.BOLD, 14));
+        jButton2.setForeground(new Color(226, 29, 29));
+        jButton2.setBounds(500, 500, 95, 25);
+        jButton2.setText("Editar");
         getContentPane().add(jButton);
+        getContentPane().add(jButton2);
 
 //        fim teste
     }
@@ -121,22 +108,41 @@ public class Listagem extends JFrame implements VisualWindow {
             veiculoDao.listAllVeiculos();
             int linhaSelecionada = -1;
             linhaSelecionada = tabela.getSelectedRow();
-//            System.out.println(tabela.getSelectedRow());
-//            System.out.println("estou aqui 2");
             if (linhaSelecionada >= 0) {
-                System.out.println("estou aqui 3");
                 System.out.println(tabela.getValueAt(linhaSelecionada, 0).toString());
                 int idVeiculo = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString());
-//                System.out.println("estou aqui 4");
                 VeiculoDao dao = new VeiculoDao();
                 dao.deleteProduto(idVeiculo);
-                        modelo.remover(linhaSelecionada);
+                        modelo.removeContato(linhaSelecionada);
             } else {
                 JOptionPane.showMessageDialog(null, "É necessário selecionar uma linha.");
             }
         }catch (Exception exception) {
             System.out.println(exception);
         }
+    }
+
+    public Carro pegaVeiculos(){
+        try {
+            System.out.println("estou aqui 1");
+            VeiculoDao veiculoDao = new VeiculoDao();
+            veiculoDao.listAllVeiculos();
+            int linhaSelecionada = -1;
+            linhaSelecionada = tabela.getSelectedRow();
+            if (linhaSelecionada >= 0) {
+                System.out.println(tabela.getValueAt(linhaSelecionada, 0).toString());
+                int idVeiculo = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString());
+                VeiculoDao dao = new VeiculoDao();
+//                dao.getProdutoById(idVeiculo);
+//                modelo.removeContato(linhaSelecionada);
+                return (Carro) dao.getProdutoById(idVeiculo);
+            } else {
+                JOptionPane.showMessageDialog(null, "É necessário selecionar uma linha.");
+            }
+        }catch (Exception exception) {
+            System.out.println(exception);
+        }
+        return null;
     }
     @Override
     public void setEvents() {
@@ -145,9 +151,18 @@ public class Listagem extends JFrame implements VisualWindow {
             public void actionPerformed(ActionEvent e) {
                 try {
                     deletaDeves();
-//                    Object [][] testeLista = (Object[][]) veiculoDao.listAllVeiculos().toArray();
-//                    System.out.println(Arrays.stream(dados).toArray());
-//                    System.out.println("teste lista de veiculos nova");
+                }catch (Exception exception){
+                    System.out.println("Erro encontrado: " + exception);
+                }
+
+            }
+        });
+
+        jButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    new EditCLient(pegaVeiculos()).setVisible(true);
                 }catch (Exception exception){
                     System.out.println("Erro encontrado: " + exception);
                 }
