@@ -1,15 +1,20 @@
 package view;
 
+import model.Carro;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class FrameBase extends JFrame implements VisualWindow {
     private JButton jButton;
     private JButton jButton2;
     private JButton jButton3;
     private JPanel painel = new JPanel();
+
+
 
     public FrameBase(){
         setLayouts();

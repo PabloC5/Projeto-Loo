@@ -1,66 +1,71 @@
 package dao;
 
+
 import java.util.List;
 
-import model.Carro;
-import model.Veiculo;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import model.BaseEntity;
+//import model.Student;
+import model.Carro;
 import util.HibernateUtil;
-import util.Tabelas;
 
-public class ProdutoDao {
-    public void saveProduto(Carro produto) {
+public class GenericDao<T extends BaseEntity> {
+    // salvando o objeto
+    public void save(T obj) {
+
         Transaction transaction = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            //start the transaction
+            // start the transaction
             transaction = session.beginTransaction();
-            //save the studendt object
-            session.evict(produto);
-            session.save(produto);
-            //commit the transaction
+            // save the studendt object
+            session.save(obj);
+            // commit the transaction
             transaction.commit();
 
-
         } catch (Exception e) {
-            if(transaction != null) {
-                System.out.println(e);
+            if (transaction != null) {
                 transaction.rollback();
                 System.out.println("abriu transaction mas falhou");
             }
         }
     }
-    public void updateProduto(Veiculo produto) {
+
+    // atualizando o objeto
+    public void update(T obj) {
 
         Transaction transaction = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            //start the transaction
+            // start the transaction
             transaction = session.beginTransaction();
-            //save the studendt object
-            session.saveOrUpdate(produto);
-            //commit the transaction
+            // save the studendt object
+            session.saveOrUpdate(obj);
+            // commit the transaction
             transaction.commit();
 
-
         } catch (Exception e) {
-            if(transaction != null) {
+            if (transaction != null) {
                 transaction.rollback();
                 System.out.println("abriu transaction mas falhou");
             }
         }
     }
-    public Veiculo getProdutoById(long id) {
+
+    public <T> T getObjectById(T obj, long id) {
+        Class classe = obj.getClass();
+        String className = classe.getSimpleName().toString();
 
         Transaction transaction = null;
-        Veiculo produto = null;
+        T retorno = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             //start the transaction
             transaction = session.beginTransaction();
             //get the studendt object
-            produto = session.get(Veiculo.class, id);
+            retorno = (T)session.get(classe, id);
             //commit the transaction
             transaction.commit();
 
@@ -71,63 +76,60 @@ public class ProdutoDao {
                 System.out.println("abriu transaction mas falhou");
             }
         }
-        return produto;
+        return retorno;
     }
 
-    public List<Veiculo> listAllVeiculos() {
-        Tabelas tabelas = Tabelas.VEICULO;
+    public List<T> listAll(T obj) {
+
+        Class classe = obj.getClass();
+        String className = classe.getSimpleName().toString();
+
         Transaction transaction = null;
-        List<Veiculo> produtos = null;
+        List<T> objects = null;
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            //start the transaction
+            // start the transaction
             transaction = session.beginTransaction();
-            //get the studendts
-            produtos = session.createQuery("FROM " + tabelas.getNomeTabelas()).list();
-//            for (int i = 0; i <produtos.size(); i++) {
-//                System.out.println(produtos.get(i));
-//            }
-            for(Veiculo produto: produtos){
-                System.out.println(produto.getNomePoduto());
-            }
-            //commit the transaction
-            System.out.println(produtos);
+            // get the studendts
+            objects = session.createQuery("from " + className).list();
+            // objects = session.createQuery("SELECT a FROM Student a",
+            // Student.class).getResultList();
+            // commit the transaction
             transaction.commit();
 
-
         } catch (Exception e) {
-            if(transaction != null) {
-                System.out.println(e);
+            if (transaction != null) {
                 transaction.rollback();
                 System.out.println("abriu transaction mas falhou");
             }
         }
 
-        return produtos;
+        return objects;
     }
 
-    public void deleteProduto(long id) {
+    public void deleteCarro(long id) {
 
         Transaction transaction = null;
-        Veiculo produto = null;
+        Carro carro = null;
 
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            //start the transaction
+            // start the transaction
             transaction = session.beginTransaction();
-            //delete the studendt object
-            produto = session.get(Veiculo.class, id);
-            session.delete(produto);
+            // delete the studendt object
+            carro = session.get(Carro.class, id);
+            session.delete(carro);
 
-            //commit the transaction
+            // commit the transaction
             transaction.commit();
 
-
         } catch (Exception e) {
-            if(transaction != null) {
+            if (transaction != null) {
                 transaction.rollback();
                 System.out.println("abriu transaction mas falhou");
             }
         }
     }
+
 }
+

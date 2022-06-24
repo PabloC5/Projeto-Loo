@@ -4,10 +4,9 @@ import java.util.List;
 
 import model.Cliente;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import util.HibernateUtil;
-import util.Tabelas;
+import model.Tabelas;
 
 public class ClientDao{
     public void saveProduto(Cliente cliente) {

@@ -1,4 +1,4 @@
-package util;
+package model;
 
 public enum Tabelas {
     VEICULO("Veiculo"),

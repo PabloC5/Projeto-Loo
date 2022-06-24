@@ -1,6 +1,6 @@
 package controller;
 
-import dao.ProdutoDao;
+import dao.VeiculoDao;
 import model.Veiculo;
 
 import java.util.List;
@@ -9,7 +9,7 @@ public class ListaClientes {
 
     private List<Veiculo> veiculos = null;
 
-    public ProdutoDao produtoDao;
+    public VeiculoDao veiculoDao;
 
     public ListaClientes() {
     }

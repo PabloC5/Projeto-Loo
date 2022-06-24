@@ -1,6 +1,8 @@
 package view;
 
 import controller.Register;
+import dao.CarroDao;
+import dao.VeiculoDao;
 import model.Carro;
 import util.Banco;
 
@@ -12,6 +14,8 @@ import java.awt.event.ActionListener;
 public class CadastroVeiculo extends JFrame implements VisualWindow {
 
     private JButton jButton;
+
+    private JButton jButton2;
     private JTextField textField;
     private JTextField textField2;
     private JTextField textField3;
@@ -124,6 +128,23 @@ public class CadastroVeiculo extends JFrame implements VisualWindow {
                     textField2.setText("");
                     textField3.setText("");
                     textField4.setText("");
+                }catch (NumberFormatException exception){
+                    textField.setText("Valores vazios");
+                    textField2.setText("Valores vazios");
+                    textField3.setText("Valores vazios");
+                    textField4.setText("Valores vazios");
+                    System.out.println("Não permitido valores vazios");
+                }
+            }
+        });
+
+        jButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    CarroDao veiculoDao = new CarroDao();
+//                    veiculoDao.deleteCarro();
+
                 }catch (Exception exception){
                     System.out.println("Encontrado um erro: " + exception);
                 }
