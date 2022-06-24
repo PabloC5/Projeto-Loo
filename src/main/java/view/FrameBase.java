@@ -3,7 +3,6 @@ package view;
 import dao.VeiculoDao;
 //import model.Carro;
 import model.Carro;
-import model.Veiculo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +11,10 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class FrameBase extends JFrame implements VisualWindow {
-    private JButton jButton;
-    private JButton jButton2;
-    private JButton jButton3;
-    private JButton jButton4;
+    private JButton jButtonRegistClient;
+    private JButton jButtonListCar;
+    private JButton jButtonRegistVeich;
+    private JButton jButtonListClient;
     private JButton jButtonThread;
 
     private JPanel painel = new JPanel();
@@ -38,13 +37,13 @@ public class FrameBase extends JFrame implements VisualWindow {
 
     @Override
     public void setComponents() {
-        jButton = new JButton("Cadastrar Cliente");
-        jButton2 = new JButton("Listar Carros");
-        jButton3 = new JButton("Cadastrar Veiculo");
-        jButton4 = new JButton("Listar Clientes");
+        jButtonRegistClient = new JButton("Cadastrar Cliente");
+        jButtonListCar = new JButton("Listar Carros");
+        jButtonRegistVeich = new JButton("Cadastrar Veiculo");
+        jButtonListClient = new JButton("Listar Clientes");
         jButtonThread = new JButton("Execute a Thread??");
 
-        painel.add(jButton);
+        painel.add(jButtonRegistClient);
 
         JPanel listPane = new JPanel();
         listPane.setLayout(new BoxLayout(listPane, BoxLayout.PAGE_AXIS));
@@ -64,13 +63,13 @@ public class FrameBase extends JFrame implements VisualWindow {
         buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 200, 10));
         buttonPane.add(Box.createVerticalGlue());
         buttonPane.add(Box.createRigidArea(new Dimension(250, 0)));
-        buttonPane.add(jButton);
+        buttonPane.add(jButtonRegistClient);
         buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
-        buttonPane.add(jButton2);
+        buttonPane.add(jButtonListClient);
         buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
-        buttonPane.add(jButton3);
+        buttonPane.add(jButtonListCar);
         buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
-        buttonPane.add(jButton4);
+        buttonPane.add(jButtonRegistVeich);
         buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
         buttonPane.add(jButtonThread);
         Container contentPane = getContentPane();
@@ -118,28 +117,28 @@ public class FrameBase extends JFrame implements VisualWindow {
 
     @Override
     public void setEvents() {
-        jButton.addActionListener(new ActionListener() {
+        jButtonRegistClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new CadastroCliente().setVisible(true);
             }
         });
 
-        jButton2.addActionListener(new ActionListener() {
+        jButtonListCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ListagemVeiculos().setVisible(true);
             }
         });
 
-        jButton3.addActionListener(new ActionListener() {
+        jButtonRegistVeich.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new CadastroVeiculo().setVisible(true);
             }
         });
 
-        jButton4.addActionListener(new ActionListener() {
+        jButtonListClient.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ListagemClientes().setVisible(true);
