@@ -1,17 +1,16 @@
 package view;
 
-import model.Carro;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class FrameBase extends JFrame implements VisualWindow {
     private JButton jButton;
     private JButton jButton2;
     private JButton jButton3;
+
+    private JButton jButton4;
     private JPanel painel = new JPanel();
 
 
@@ -33,8 +32,9 @@ public class FrameBase extends JFrame implements VisualWindow {
     @Override
     public void setComponents() {
         jButton = new JButton("Cadastrar Cliente");
-        jButton2 = new JButton("Listar Clientes");
+        jButton2 = new JButton("Listar Carros");
         jButton3 = new JButton("Cadastrar Produto");
+        jButton4 = new JButton("Listar Clientes");
 
         painel.add(jButton);
 
@@ -61,6 +61,8 @@ public class FrameBase extends JFrame implements VisualWindow {
         buttonPane.add(jButton2);
         buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
         buttonPane.add(jButton3);
+        buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        buttonPane.add(jButton4);
         Container contentPane = getContentPane();
 
         contentPane.add(listPane, BorderLayout.CENTER);
@@ -81,7 +83,7 @@ public class FrameBase extends JFrame implements VisualWindow {
         jButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Listagem().setVisible(true);
+                new ListagemVeiculos().setVisible(true);
             }
         });
 
@@ -89,6 +91,13 @@ public class FrameBase extends JFrame implements VisualWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new CadastroVeiculo().setVisible(true);
+            }
+        });
+
+        jButton4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ListagemClientes().setVisible(true);
             }
         });
     }

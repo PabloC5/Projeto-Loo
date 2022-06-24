@@ -17,10 +17,6 @@ import dao.VeiculoDao;
 import model.Carro;
 import util.Banco;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 //public class EditCLient {
     public class EditCLient extends JFrame implements VisualWindow {

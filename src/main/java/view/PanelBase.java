@@ -7,7 +7,7 @@ public class PanelBase extends JPanel implements VisualWindow {
 
     private FrameBase frameBase;
     private CadastroVeiculo initialJP;
-    private Listagem secondJP;
+    private ListagemVeiculos secondJP;
     private ThirdScreen thirdJP;
 
 

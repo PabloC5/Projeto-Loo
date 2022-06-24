@@ -1,21 +1,18 @@
 package view;
 
-import controller.CriaTableVeiculos;
-import dao.VeiculoDao;
+import model.CriaTableVeiculos;
 import controller.ListaClientes;
+import dao.VeiculoDao;
 import model.Carro;
-import model.Veiculo;
 import util.Banco;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class Listagem extends JFrame implements VisualWindow {
+public class ListagemClientes extends JFrame implements VisualWindow {
 
     private JButton jButton;
 
@@ -39,13 +36,7 @@ public class Listagem extends JFrame implements VisualWindow {
 
     String [] colunas = {"Modelo", "Preço", "teste"};
 
-    Object [][] dados = {
-            {"Ana Monteiro", "48 9923-7898", "ana.monteiro@gmail.com"},
-            {"João da Silva", "48 8890-3345", "joaosilva@hotmail.com"},
-            {"Pedro Cascaes", "48 9870-5634", "pedrinho@gmail.com"}
-    };
-
-    public Listagem(){
+    public ListagemClientes(){
         setLayouts();
         setComponents();
         setEvents();
@@ -69,7 +60,7 @@ public class Listagem extends JFrame implements VisualWindow {
         modelo = new CriaTableVeiculos(lista);
         tabela.setModel(modelo);
     }
-//    teste net
+    //    teste net
     @Override
     public void setComponents() {
         painelFundo = new JPanel();
@@ -92,7 +83,8 @@ public class Listagem extends JFrame implements VisualWindow {
 
         jButton2 = new JButton("");
         jButton2.setFont(new Font("Ubuntu", Font.BOLD, 14));
-        jButton2.setForeground(new Color(226, 29, 29));
+//        jButton2.setForeground(new Color(226, 29, 29));
+        jButton2.setForeground(new Color(01, 100, 0));
         jButton2.setBounds(500, 500, 95, 25);
         jButton2.setText("Editar");
         getContentPane().add(jButton);
@@ -113,7 +105,7 @@ public class Listagem extends JFrame implements VisualWindow {
                 int idVeiculo = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString());
                 VeiculoDao dao = new VeiculoDao();
                 dao.deleteProduto(idVeiculo);
-                        modelo.removeContato(linhaSelecionada);
+                modelo.removeContato(linhaSelecionada);
             } else {
                 JOptionPane.showMessageDialog(null, "É necessário selecionar uma linha.");
             }

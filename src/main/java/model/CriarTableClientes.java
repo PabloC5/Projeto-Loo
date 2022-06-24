@@ -1,30 +1,26 @@
-package controller;
+package model;
 
-import model.Carro;
+//public class CriarTableClientes {
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class CriaTableVeiculos extends AbstractTableModel {
+public class CriarTableClientes extends AbstractTableModel {
 
     private static final int COL_ID = 0;
-    private static final int COL_NOME = 1;
+    private static final int COL_CPF = 1;
 
-    private static final int COL_PORTAS = 2;
+    private static final int COL_IDADE = 2;
 
-    private static final int COL_RODAS = 3;
-
-    private static final int COL_PRECO = 4;
+    private static final int COL_NOME = 3;
 
 
 
     List<Carro> listDeCarros;
 
-    String [] colunas = {"ID","Modelo", "Portas", "Aro Rodas","Preço"};
+    String [] colunas = {"ID","CPF", "Idade", "Nome"};
 
-
-
-    public CriaTableVeiculos(List<Carro> listDeCarros) {
+    public CriarTableClientes(List<Carro> listDeCarros) {
         this.listDeCarros = listDeCarros;
     }
 
@@ -64,14 +60,12 @@ public class CriaTableVeiculos extends AbstractTableModel {
 
         if (column == COL_ID) {
             return m.getId();
-        } else if (column == COL_NOME) {
+        } else if (column == COL_CPF) {
             return m.getNomePoduto();
-        }else if (column == COL_PORTAS){
+        }else if (column == COL_IDADE){
             return m.getPortas();
-        }else if (column == COL_RODAS){
+        }else if (column == COL_NOME){
             return m.getAroRodas();
-        }else if (column == COL_PRECO){
-            return m.getPreco();
         }
 
         return m.getId();
@@ -95,3 +89,5 @@ public class CriaTableVeiculos extends AbstractTableModel {
     }
 
 }
+
+//}
