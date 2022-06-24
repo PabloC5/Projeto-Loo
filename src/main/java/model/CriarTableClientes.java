@@ -36,12 +36,12 @@ public class CriarTableClientes extends AbstractTableModel {
         return colunas[columnIndex];
     }
 
-    public Class getColumnClass(int columnIndex) {
-        if (columnIndex == COL_ID) {
-            return Integer.class;
-        }
-        return String.class;
-    }
+//    public Class getColumnClass(int columnIndex) {
+//        if (columnIndex == COL_ID) {
+//            return Integer.class;
+//        }
+//        return String.class;
+//    }
 
     public void removeCliente(int indiceLinha) {
         listaClientes.remove(indiceLinha);

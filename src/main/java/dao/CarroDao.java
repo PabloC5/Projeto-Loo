@@ -96,21 +96,33 @@ public class CarroDao {
 
         return carros;
     }
-    public void deleteCarro(Carro carros) {
+    public void deleteCarro(long id) {
 
         Transaction transaction = null;
         Carro carro = null;
 
         try {
+//            Session session = HibernateUtil.getSessionFactory().openSession();
+//            //start the transaction
+//            transaction = session.beginTransaction();
+//            //delete the studendt object
+////            carro = session.get(Carro.class, carro);
+//            session.delete(carros);
+//
+//            //commit the transaction
+//            transaction.commit();
+
+//            novo
             Session session = HibernateUtil.getSessionFactory().openSession();
             //start the transaction
             transaction = session.beginTransaction();
             //delete the studendt object
-//            carro = session.get(Carro.class, carro);
-            session.delete(carros);
+            carro = session.get(Carro.class, id);
+            session.delete(carro);
 
             //commit the transaction
             transaction.commit();
+//            fim
 
 
         } catch (Exception e) {

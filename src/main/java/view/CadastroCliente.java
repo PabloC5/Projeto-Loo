@@ -2,8 +2,6 @@ package view;
 
 import controller.Register;
 import model.Cliente;
-import model.Veiculo;
-import util.Banco;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +14,6 @@ public class CadastroCliente extends JFrame implements VisualWindow {
     private JTextField textField;
     private JTextField textField2;
     private JTextField textField3;
-    private Banco banco = new Banco();
     private JPanel contentPane;
     private JPanel tituloPainel;
 

@@ -1,10 +1,10 @@
 package view;
 
+import controller.Register;
 import dao.ClientDao;
 import model.Cliente;
 import controller.ListaClientes;
 import model.CriarTableClientes;
-import util.Banco;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,16 +17,8 @@ public class ListagemClientes extends JFrame implements VisualWindow {
     private JButton jButton;
 
     private  JButton jButton2;
-    private JTextField textField;
-    private JTextField textField2;
-    private JTextField textField3;
-    private Banco banco = new Banco();
-    private JPanel contentPane;
-    private JPanel tituloPainel;
-
     private JPanel painelFundo;
 
-    private ListaClientes listaClientes;
     private JTable tabela;
 
     private JScrollPane barraRolagem;
@@ -40,10 +32,6 @@ public class ListagemClientes extends JFrame implements VisualWindow {
         setEvents();
         repaint();
     }
-
-//    public Listagem(List<Carro> carros){
-//        this.listDeCarros = new ArrayList<>(carros);
-//    }
 
     @Override
     public void setLayouts() {
@@ -81,7 +69,6 @@ public class ListagemClientes extends JFrame implements VisualWindow {
 
         jButton2 = new JButton("");
         jButton2.setFont(new Font("Ubuntu", Font.BOLD, 14));
-//        jButton2.setForeground(new Color(226, 29, 29));
         jButton2.setForeground(new Color(01, 100, 0));
         jButton2.setBounds(500, 500, 95, 25);
         jButton2.setText("Editar");
@@ -101,8 +88,8 @@ public class ListagemClientes extends JFrame implements VisualWindow {
             if (linhaSelecionada >= 0) {
                 System.out.println(tabela.getValueAt(linhaSelecionada, 0).toString());
                 int idClient = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString());
-                ClientDao dao = new ClientDao();
-                dao.deleteCliente(idClient);
+                Register register = new Register();
+                register.deletaClientes(idClient);
                 modelClienteTable.removeCliente(linhaSelecionada);
             }
         }catch (Exception exception) {

@@ -23,7 +23,6 @@ public class CriaTableVeiculos extends AbstractTableModel {
     String [] colunas = {"ID","Modelo", "Portas", "Aro Rodas","Preço"};
 
 
-
     public CriaTableVeiculos(List<Carro> listDeCarros) {
         this.listDeCarros = listDeCarros;
     }
@@ -40,18 +39,17 @@ public class CriaTableVeiculos extends AbstractTableModel {
         return colunas[columnIndex];
     }
 
-    public Class getColumnClass(int columnIndex) {
-        if (columnIndex == COL_ID) {
-            return Integer.class;
-        }
-        return String.class;
-    }
+//    public Class getColumnClass(int columnIndex) {
+//        if (columnIndex == COL_ID) {
+//            return Integer.class;
+//        }
+//        return String.class;
+//    }
 
     public void removeContato(int indiceLinha) {
         listDeCarros.remove(indiceLinha);
         fireTableRowsDeleted(indiceLinha,
                 indiceLinha);
-
     }
     public boolean isCellEditable(int rowIndex, int
             columnIndex) {
@@ -76,22 +74,4 @@ public class CriaTableVeiculos extends AbstractTableModel {
 
         return m.getId();
     }
-
-    public Object getValueAt2(int row, int column) {
-
-        Carro m = listDeCarros.get(row);
-
-//        if (column == COL_ID) {
-//            return m.getNomePoduto();
-//        } else if (column == COL_NOME) {
-//            return m.getPreco();
-//        }else if (column == COL_PORTAS){
-//            return m.getPortas();
-//        }else if (column == COL_RODAS){
-//            return m.getAroRodas();
-//        }
-
-        return m.getId();
-    }
-
 }

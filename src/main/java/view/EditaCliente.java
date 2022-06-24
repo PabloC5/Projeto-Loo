@@ -1,11 +1,8 @@
 package view;
 
 import controller.Register;
-import dao.CarroDao;
 import dao.ClientDao;
-import model.Carro;
 import model.Cliente;
-import util.Banco;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +18,6 @@ public class EditaCliente extends JFrame implements VisualWindow {
     private JTextField textField2;
     private JTextField textField3;
     private JTextField textField4;
-    private Banco banco = new Banco();
     private JPanel contentPane;
     private JPanel tituloPainel;
 

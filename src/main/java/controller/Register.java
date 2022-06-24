@@ -27,8 +27,13 @@ public class Register {
         clientDao.updateCliente(cliente);
     }
 
-    public void deletaCarro(Carro carro){
+    public void deletaCarro(long idCarro){
         CarroDao veiculoDao = new CarroDao();
-        veiculoDao.deleteCarro(carro);
+        veiculoDao.deleteCarro(idCarro);
+    }
+
+    public void deletaClientes(long idCliente){
+        ClientDao clientDao = new ClientDao();
+        clientDao.deleteCliente(idCliente);
     }
 }

@@ -1,10 +1,10 @@
 package view;
 
+import controller.Register;
 import model.CriaTableVeiculos;
 import dao.VeiculoDao;
 import controller.ListaClientes;
 import model.Carro;
-import util.Banco;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,16 +17,8 @@ public class ListagemVeiculos extends JFrame implements VisualWindow {
     private JButton jButton;
 
     private  JButton jButton2;
-    private JTextField textField;
-    private JTextField textField2;
-    private JTextField textField3;
-    private Banco banco = new Banco();
-    private JPanel contentPane;
-    private JPanel tituloPainel;
 
     private JPanel painelFundo;
-
-    private ListaClientes listaClientes;
     private JTable tabela;
 
     private JScrollPane barraRolagem;
@@ -34,18 +26,12 @@ public class ListagemVeiculos extends JFrame implements VisualWindow {
     private CriaTableVeiculos modelo;
     List<Carro> lista;
 
-    String [] colunas = {"Modelo", "Preço", "teste"};
-
     public ListagemVeiculos(){
         setLayouts();
         setComponents();
         setEvents();
         repaint();
     }
-
-//    public Listagem(List<Carro> carros){
-//        this.listDeCarros = new ArrayList<>(carros);
-//    }
 
     @Override
     public void setLayouts() {
@@ -71,7 +57,6 @@ public class ListagemVeiculos extends JFrame implements VisualWindow {
         painelFundo.add(barraRolagem);
 
         getContentPane().add(painelFundo);
-//        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 120);
         setVisible(true);
 
@@ -83,13 +68,11 @@ public class ListagemVeiculos extends JFrame implements VisualWindow {
 
         jButton2 = new JButton("");
         jButton2.setFont(new Font("Ubuntu", Font.BOLD, 14));
-//        jButton2.setForeground(new Color(226, 29, 29));
         jButton2.setForeground(new Color(01, 100, 0));
         jButton2.setBounds(500, 500, 95, 25);
         jButton2.setText("Editar");
         getContentPane().add(jButton);
         getContentPane().add(jButton2);
-
 //        fim teste
     }
 
@@ -103,9 +86,9 @@ public class ListagemVeiculos extends JFrame implements VisualWindow {
             if (linhaSelecionada >= 0) {
                 System.out.println(tabela.getValueAt(linhaSelecionada, 0).toString());
                 int idVeiculo = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString());
-                VeiculoDao dao = new VeiculoDao();
-                dao.deleteProduto(idVeiculo);
-                        modelo.removeContato(linhaSelecionada);
+                Register register = new Register();
+                register.deletaCarro(idVeiculo);
+                modelo.removeContato(linhaSelecionada);
             } else {
                 JOptionPane.showMessageDialog(null, "É necessário selecionar uma linha.");
             }
@@ -125,8 +108,6 @@ public class ListagemVeiculos extends JFrame implements VisualWindow {
                 System.out.println(tabela.getValueAt(linhaSelecionada, 0).toString());
                 int idVeiculo = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString());
                 VeiculoDao dao = new VeiculoDao();
-//                dao.getProdutoById(idVeiculo);
-//                modelo.removeContato(linhaSelecionada);
                 return (Carro) dao.getProdutoById(idVeiculo);
             } else {
                 JOptionPane.showMessageDialog(null, "É necessário selecionar uma linha.");
@@ -163,7 +144,7 @@ public class ListagemVeiculos extends JFrame implements VisualWindow {
         });
     }
 
-    public void repaintAll(){
+    public void repaintAllVeiculos(){
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

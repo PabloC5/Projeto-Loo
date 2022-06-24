@@ -2,7 +2,6 @@ package view;
 
 import controller.Register;
 import model.Carro;
-import util.Banco;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +22,6 @@ import dao.CarroDao;
         private JTextField textField2;
         private JTextField textField3;
         private JTextField textField4;
-        private Banco banco = new Banco();
         private JPanel contentPane;
         private JPanel tituloPainel;
 
@@ -135,6 +133,8 @@ import dao.CarroDao;
                         Carro carro = new Carro(id,produtoPreco,nomeProduto,aroRodas, numeroPortas);
                         Register register = new Register();
                         register.updateCarros(carro);
+                        ListagemVeiculos listagemVeiculos = new ListagemVeiculos();
+                        listagemVeiculos.repaintAllVeiculos();
 //                        carroDao.updateCarro(carro);
                         System.out.println(carro);
                     }catch (NumberFormatException exception){
