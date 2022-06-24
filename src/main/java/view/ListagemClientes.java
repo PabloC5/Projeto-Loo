@@ -3,7 +3,6 @@ package view;
 import controller.Register;
 import dao.ClientDao;
 import model.Cliente;
-import controller.ListaClientes;
 import model.CriarTableClientes;
 
 import javax.swing.*;

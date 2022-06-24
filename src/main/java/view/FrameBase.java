@@ -1,16 +1,23 @@
 package view;
 
+import dao.VeiculoDao;
+//import model.Carro;
+import model.Carro;
+import model.Veiculo;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class FrameBase extends JFrame implements VisualWindow {
     private JButton jButton;
     private JButton jButton2;
     private JButton jButton3;
-
     private JButton jButton4;
+    private JButton jButtonThread;
+
     private JPanel painel = new JPanel();
 
 
@@ -33,8 +40,9 @@ public class FrameBase extends JFrame implements VisualWindow {
     public void setComponents() {
         jButton = new JButton("Cadastrar Cliente");
         jButton2 = new JButton("Listar Carros");
-        jButton3 = new JButton("Cadastrar Produto");
+        jButton3 = new JButton("Cadastrar Veiculo");
         jButton4 = new JButton("Listar Clientes");
+        jButtonThread = new JButton("Execute a Thread??");
 
         painel.add(jButton);
 
@@ -55,7 +63,7 @@ public class FrameBase extends JFrame implements VisualWindow {
         buttonPane.setAlignmentX(CENTER_ALIGNMENT);
         buttonPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 200, 10));
         buttonPane.add(Box.createVerticalGlue());
-        buttonPane.add(Box.createRigidArea(new Dimension(400, 0)));
+        buttonPane.add(Box.createRigidArea(new Dimension(250, 0)));
         buttonPane.add(jButton);
         buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
         buttonPane.add(jButton2);
@@ -63,12 +71,49 @@ public class FrameBase extends JFrame implements VisualWindow {
         buttonPane.add(jButton3);
         buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
         buttonPane.add(jButton4);
+        buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        buttonPane.add(jButtonThread);
         Container contentPane = getContentPane();
 
         contentPane.add(listPane, BorderLayout.CENTER);
         contentPane.add(buttonPane, BorderLayout.SOUTH);
         contentPane.add(titlePanel, BorderLayout.NORTH);
 
+    }
+
+    public void ExecThread(){
+        new Thread() {
+
+            JFrame frame = new JFrame();
+            JPanel panel = new JPanel();
+            JLabel label = new JLabel();
+
+            List<Carro> listaPercorreCarro;
+            VeiculoDao dao = new VeiculoDao();
+            public void run() {
+                frame.setBackground(Color.gray);
+                frame.setSize(800, 600);
+                frame.setVisible(true);
+
+                panel.add(label);
+                frame.add(panel);
+//                frame.add(panel2);
+                label.setText("0");
+
+                listaPercorreCarro = dao.listAllVeiculos();
+                for (int i = 1; i-1 < listaPercorreCarro.size(); i++) {
+                    try {
+                        sleep(100);
+                        System.out.println("to executando");
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    label.setText("Contando quantos Veiculos temos no banco: " + i);
+                }
+//                frame.dispose();
+            }
+        }.start();
     }
 
     @Override
@@ -98,6 +143,13 @@ public class FrameBase extends JFrame implements VisualWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new ListagemClientes().setVisible(true);
+            }
+        });
+
+        jButtonThread.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ExecThread();
             }
         });
     }

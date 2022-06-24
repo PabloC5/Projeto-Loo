@@ -12,12 +12,9 @@ import java.awt.event.ActionListener;
 public class EditaCliente extends JFrame implements VisualWindow {
 
     private JButton jButton;
-
-    private JButton jButton2;
     private JTextField textField;
     private JTextField textField2;
     private JTextField textField3;
-    private JTextField textField4;
     private JPanel contentPane;
     private JPanel tituloPainel;
 
