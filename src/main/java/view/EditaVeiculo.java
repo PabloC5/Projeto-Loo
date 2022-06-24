@@ -2,7 +2,6 @@ package view;
 
 import controller.Register;
 import model.Carro;
-import model.Veiculo;
 import util.Banco;
 
 import javax.swing.*;
@@ -11,15 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-import controller.Register;
 import dao.CarroDao;
-import dao.VeiculoDao;
-import model.Carro;
-import util.Banco;
 
 
 //public class EditCLient {
-    public class EditCLient extends JFrame implements VisualWindow {
+    public class EditaVeiculo extends JFrame implements VisualWindow {
 
         private JButton jButton;
 
@@ -35,7 +30,7 @@ import util.Banco;
         private Carro veiculo2;
 
 
-        public EditCLient(Carro veiculo){
+        public EditaVeiculo(Carro veiculo){
             this.veiculo2 = veiculo;
             setLayouts();
             setComponents();

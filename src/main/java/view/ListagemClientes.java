@@ -1,9 +1,9 @@
 package view;
 
-import model.CriaTableVeiculos;
+import dao.ClientDao;
+import model.Cliente;
 import controller.ListaClientes;
-import dao.VeiculoDao;
-import model.Carro;
+import model.CriarTableClientes;
 import util.Banco;
 
 import javax.swing.*;
@@ -31,10 +31,8 @@ public class ListagemClientes extends JFrame implements VisualWindow {
 
     private JScrollPane barraRolagem;
 
-    private CriaTableVeiculos modelo;
-    List<Carro> lista;
-
-    String [] colunas = {"Modelo", "Preço", "teste"};
+    private CriarTableClientes modelClienteTable;
+    List<Cliente> listaCliente;
 
     public ListagemClientes(){
         setLayouts();
@@ -55,17 +53,17 @@ public class ListagemClientes extends JFrame implements VisualWindow {
     }
 
     private void pesquisar() {
-        VeiculoDao dao = new VeiculoDao();
-        lista = dao.listAllVeiculos();
-        modelo = new CriaTableVeiculos(lista);
-        tabela.setModel(modelo);
+        ClientDao dao = new ClientDao();
+        listaCliente = dao.listAllCliente();
+        modelClienteTable = new CriarTableClientes(listaCliente);
+        tabela.setModel(modelClienteTable);
     }
     //    teste net
     @Override
     public void setComponents() {
         painelFundo = new JPanel();
         painelFundo.setLayout(new GridLayout(1, 1));
-        tabela = new JTable(modelo);
+        tabela = new JTable(modelClienteTable);
         pesquisar();
         barraRolagem = new JScrollPane(tabela);
         painelFundo.add(barraRolagem);
@@ -93,43 +91,37 @@ public class ListagemClientes extends JFrame implements VisualWindow {
 //        fim teste
     }
 
-    public void deletaDeves(){
+    public void deletarClient(){
         try {
             System.out.println("estou aqui 1");
-            VeiculoDao veiculoDao = new VeiculoDao();
-            veiculoDao.listAllVeiculos();
+            ClientDao clienteDao = new ClientDao();
+            clienteDao.listAllCliente();
             int linhaSelecionada = -1;
             linhaSelecionada = tabela.getSelectedRow();
             if (linhaSelecionada >= 0) {
                 System.out.println(tabela.getValueAt(linhaSelecionada, 0).toString());
-                int idVeiculo = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString());
-                VeiculoDao dao = new VeiculoDao();
-                dao.deleteProduto(idVeiculo);
-                modelo.removeContato(linhaSelecionada);
-            } else {
-                JOptionPane.showMessageDialog(null, "É necessário selecionar uma linha.");
+                int idClient = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString());
+                ClientDao dao = new ClientDao();
+                dao.deleteCliente(idClient);
+                modelClienteTable.removeCliente(linhaSelecionada);
             }
         }catch (Exception exception) {
             System.out.println(exception);
         }
     }
 
-    public Carro pegaVeiculos(){
+    public Cliente getClientes(){
         try {
             System.out.println("estou aqui 1");
-            VeiculoDao veiculoDao = new VeiculoDao();
-            veiculoDao.listAllVeiculos();
+            ClientDao clienteDao = new ClientDao();
+            clienteDao.listAllCliente();
             int linhaSelecionada = -1;
             linhaSelecionada = tabela.getSelectedRow();
             if (linhaSelecionada >= 0) {
                 System.out.println(tabela.getValueAt(linhaSelecionada, 0).toString());
-                int idVeiculo = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString());
-                VeiculoDao dao = new VeiculoDao();
-//                dao.getProdutoById(idVeiculo);
-//                modelo.removeContato(linhaSelecionada);
-                return (Carro) dao.getProdutoById(idVeiculo);
-            } else {
-                JOptionPane.showMessageDialog(null, "É necessário selecionar uma linha.");
+                int idCliente = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString());
+                ClientDao dao = new ClientDao();
+                return dao.getClienteById(idCliente);
             }
         }catch (Exception exception) {
             System.out.println(exception);
@@ -142,7 +134,7 @@ public class ListagemClientes extends JFrame implements VisualWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    deletaDeves();
+                    deletarClient();
                 }catch (Exception exception){
                     System.out.println("Erro encontrado: " + exception);
                 }
@@ -154,7 +146,7 @@ public class ListagemClientes extends JFrame implements VisualWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new EditCLient(pegaVeiculos()).setVisible(true);
+                    new EditaCliente(getClientes()).setVisible(true);
                 }catch (Exception exception){
                     System.out.println("Erro encontrado: " + exception);
                 }

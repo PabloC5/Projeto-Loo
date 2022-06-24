@@ -22,7 +22,12 @@ public class Register {
         carroDao.updateCarro(carro);
     }
 
-    public void deleteCar(Carro carro){
+    public void updateClinte(Cliente cliente){
+        ClientDao clientDao = new ClientDao();
+        clientDao.updateCliente(cliente);
+    }
+
+    public void deletaCarro(Carro carro){
         CarroDao veiculoDao = new CarroDao();
         veiculoDao.deleteCarro(carro);
     }

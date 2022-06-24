@@ -16,16 +16,16 @@ public class CriarTableClientes extends AbstractTableModel {
 
 
 
-    List<Carro> listDeCarros;
+    List<Cliente> listaClientes;
 
     String [] colunas = {"ID","CPF", "Idade", "Nome"};
 
-    public CriarTableClientes(List<Carro> listDeCarros) {
-        this.listDeCarros = listDeCarros;
+    public CriarTableClientes(List<Cliente> listaClientes) {
+        this.listaClientes = listaClientes;
     }
 
     public int getRowCount() {
-        return listDeCarros.size();
+        return listaClientes.size();
     }
 
     public int getColumnCount() {
@@ -43,8 +43,8 @@ public class CriarTableClientes extends AbstractTableModel {
         return String.class;
     }
 
-    public void removeContato(int indiceLinha) {
-        listDeCarros.remove(indiceLinha);
+    public void removeCliente(int indiceLinha) {
+        listaClientes.remove(indiceLinha);
         fireTableRowsDeleted(indiceLinha,
                 indiceLinha);
 
@@ -56,38 +56,18 @@ public class CriarTableClientes extends AbstractTableModel {
 
     public Object getValueAt(int row, int column) {
 
-        Carro m = listDeCarros.get(row);
+        Cliente m = listaClientes.get(row);
 
         if (column == COL_ID) {
             return m.getId();
         } else if (column == COL_CPF) {
-            return m.getNomePoduto();
+            return m.getCpf();
         }else if (column == COL_IDADE){
-            return m.getPortas();
+            return m.getIdade();
         }else if (column == COL_NOME){
-            return m.getAroRodas();
+            return m.getNome();
         }
 
         return m.getId();
     }
-
-    public Object getValueAt2(int row, int column) {
-
-        Carro m = listDeCarros.get(row);
-
-//        if (column == COL_ID) {
-//            return m.getNomePoduto();
-//        } else if (column == COL_NOME) {
-//            return m.getPreco();
-//        }else if (column == COL_PORTAS){
-//            return m.getPortas();
-//        }else if (column == COL_RODAS){
-//            return m.getAroRodas();
-//        }
-
-        return m.getId();
-    }
-
 }
-
-//}

@@ -154,7 +154,7 @@ public class ListagemVeiculos extends JFrame implements VisualWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    new EditCLient(pegaVeiculos()).setVisible(true);
+                    new EditaVeiculo(pegaVeiculos()).setVisible(true);
                 }catch (Exception exception){
                     System.out.println("Erro encontrado: " + exception);
                 }

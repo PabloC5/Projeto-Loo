@@ -35,6 +35,15 @@ public class Cliente {
         setIdade(idade);
         setCpf(cpf);
     }
+
+    public Cliente(long id,String nome, int idade, String cpf){
+        super();
+        setId(id);
+        setNome(nome);
+        setIdade(idade);
+        setCpf(cpf);
+    }
+
     public long getId() {
         return id;
     }

@@ -37,7 +37,7 @@ public class ClientDao{
             //start the transaction
             transaction = session.beginTransaction();
             //save the studendt object
-            session.saveOrUpdate(cliente);
+            session.update(cliente);
             //commit the transaction
             transaction.commit();
 

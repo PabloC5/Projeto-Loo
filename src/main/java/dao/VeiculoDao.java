@@ -89,10 +89,10 @@ public List<Carro> listAllVeiculos() {
         //get the studendts
         produtos = (ArrayList<Carro>) session.createQuery("FROM " + tabelas.getNomeTabelas()).list();
 
-        for(Carro produto: produtos){
-            produto.setPreco(produto.getPreco());
-            produto.setNomePoduto(produto.getNomePoduto());
-        }
+//        for(Carro produto: produtos){
+//            produto.setPreco(produto.getPreco());
+//            produto.setNomePoduto(produto.getNomePoduto());
+//        }
         transaction.commit();
     } catch (Exception e) {
         if(transaction != null) {
