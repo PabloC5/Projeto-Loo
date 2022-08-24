@@ -38,7 +38,6 @@ public class Carro extends Veiculo implements BaseEntity{
         setPortas(portas);
     }
 
-
     @Override
     public long getId() {
         return id;
